@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">
+        Odd / Even
+      </button>
+      <br /><br />
+      <ul class="list-group">
+        <div *ngIf="onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{ odd: item % 3 !== 0 }"
+            [ngStyle]="{ backgroundColor: item % 3 !== 0 ? 'yellow' : 'red' }"
+            *ngFor="let item of oddNumbers"
+          >
+            {{ item }}
+          </li>
+        </div>
+        <!-- <div *ngIf="!onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{ odd: item % 3 !== 0 }"
+            [ngStyle]="{ backgroundColor: item % 3 !== 0 ? 'yellow' : 'red' }"
+            *ngFor="let item of evenNumbers"
+          >
+            {{ item }}
+          </li>
+        </div>
+        <ng-template [ngIf]="!onlyOdd">
+          <div>
+            <li
+            class="list-group-item"
+            [ngClass]="{ odd: item % 3 !== 0 }"
+            [ngStyle]="{ backgroundColor: item % 3 !== 0 ? 'yellow' : 'red' }"
+            *ngFor="let item of evenNumbers"
+          >
+            {{ item }}
+          </li>
+          </div>
+        </ng-template> -->
+        <div *appUnless="onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{ odd: item % 3 !== 0 }"
+            [ngStyle]="{ backgroundColor: item % 3 !== 0 ? 'yellow' : 'red' }"
+            *ngFor="let item of evenNumbers"
+          >
+            {{ item }}
+          </li>
+        </div>
+      </ul>
+      <p appBasicHighlight>Style me with basic directive!</p>
+      <p [appBetterHighlight]="'red'" defaultColor="yellow">Style me with basic directive!</p>
+      
+      <div [ngSwitch]="value">
+        <div *ngSwitchCase="5">Value is 5</div>
+        <div *ngSwitchCase="10">Value is 10</div>
+        <div *ngSwitchCase="100">Value is 100</div>
+        <div *ngSwitchDefault>Value is default</div>
+      </div>
+    </div>
+  </div>
+</div>

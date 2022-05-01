@@ -1,0 +1,35 @@
+<p>server works!</p>
+
+<h5>String Interpolation: </h5>
+
+<p [ngStyle]="{backgroundColor: getColor()}" [ngClass]="{whiteText: serverStatus === 'OFFLINE'}">{{'Server'}} {{serverId}} is {{getServerStatus()}}</p>
+
+ 
+<h5>Property Binding: </h5>
+<p>
+    <span>{{allowNewServer}}</span> &nbsp;
+    <span [innerText]="allowNewServer"></span> &nbsp;
+</p>
+
+<h5>Event Binding: </h5>
+<p>
+    <span *ngIf="serverCreated; else noServer">{{ serverCreationStatus }}</span> <br>
+
+    <button [disabled]="!allowNewServer" (click)="onCreateServer()" class="btn btn-primary">Add Server</button>
+    &nbsp;
+    <button (click)="onDeleteServer()" class="btn btn-danger">Delete Server</button>
+
+    <ng-template #noServer>Create a new server!</ng-template>
+</p>
+
+<h5>Two way Binding</h5>
+<p>
+    <input #onewaybinding type="text" class="form-control" (input)="onUpdateServerName($event)">
+    <input #twowaybinding type="text" class="form-control" [(ngModel)]="serverName">
+    <span>{{serverName}}</span>
+</p>
+
+<h5>Looping</h5>
+<div *ngFor="let server of servers; let i = index">
+    <p [ngStyle]="{backgroundColor: getColor()}" [ngClass]="{whiteText: i>3}">{{server}} is {{getServerStatus()}}</p>
+</div>
